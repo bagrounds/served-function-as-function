@@ -1,7 +1,10 @@
 # served-function-as-function
 
-Use functions that are served with serve-function like regular functions.
-This package takes care of the http communication.
+Use functions that are served with
+<a href="http://github.com/bagrounds/serve-function">serve-function</a>
+like regular functions.
+
+Let this helper function take care of the http request details.
 
 ## Installation
 
@@ -14,6 +17,7 @@ This package takes care of the http communication.
 ``` js
 
 var servedFunctionAsFunction = require('served-function-as-function');
+var serve = require('serve-function');
 
 var PORT = 12345;
 
