@@ -1,0 +1,25 @@
+{
+  "name": "served-function-as-function",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "_mocha",
+    "predocument": "rm -r docs",
+    "document": "jsdoc --destination docs -c conf/jsdoc-conf.json -r",
+    "precoverage": "rm -r coverage",
+    "coverage": "istanbul cover _mocha",
+    "build": "npm run coverage && npm run document"
+  },
+  "dependencies": {
+    "query-string": "^4.1.0",
+    "request": "^2.72.0",
+    "serve-function": "bagrounds/serve-function",
+    "type-check": "^0.3.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.3",
+    "jsdoc": "^3.4.0",
+    "mocha": "^2.4.5"
+  }
+}
