@@ -1,7 +1,11 @@
 {
   "name": "served-function-as-function",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bagrounds/served-function-as-function.git"
+  },
   "scripts": {
     "test": "_mocha",
     "predocument": "rm -r docs",
