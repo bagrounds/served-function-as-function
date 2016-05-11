@@ -34,15 +34,23 @@
 
     request(url, function(error, response, body) {
 
-      var problem = ( response.statusCode != 200 || error );
+      var problem = ( error || (response && response.statusCode != 200) );
 
       if( problem ){
-        error = {error:error,statusCode:response.statusCode};
+        var e = {};
+
+        if( error ){
+          e.error = error;
+        }
+
+        if( (response && response.statusCode != 200)){
+          e.statusCode = response.statusCode;
+        }
       } else {
         body = JSON.parse(body);
       }
 
-      callback(error, body);
+      callback(e, body);
     });
   }
 })();
