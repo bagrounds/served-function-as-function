@@ -1,5 +1,11 @@
 # served-function-as-function
 
+[![GitHub Downloads][github-img]][github-url]
+[![Travis-CI][travis-img]][travis-url]
+[![Coveralls][coveralls-img]][coveralls-url]
+[![Code Climate][codeclimate-img]][codeclimate-url]
+[![Code Climate][codeclimate-issues-img]][codeclimate-issues-url]
+
 Use functions that are served with
 <a href="http://github.com/bagrounds/serve-function">serve-function</a>
 like regular functions.
@@ -73,3 +79,18 @@ serve(options,function(error, result){
 ``` bash
   $ npm test
 ```
+
+[github-img]: https://img.shields.io/github/downloads/bagrounds/served-function-as-function/total.svg
+[github-url]: https://github.com/bagrounds/served-function-as-function
+
+[travis-img]: https://img.shields.io/travis/bagrounds/served-function-as-function/master.svg
+[travis-url]: https://travis-ci.org/bagrounds/served-function-as-function
+
+[coveralls-img]: https://coveralls.io/repos/github/bagrounds/served-function-as-function/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/bagrounds/served-function-as-function?branch=master
+
+[codeclimate-img]: https://codeclimate.com/github/bagrounds/served-function-as-function/badges/gpa.svg
+[codeclimate-url]: https://codeclimate.com/github/bagrounds/served-function-as-function
+
+[codeclimate-issues-img]: https://codeclimate.com/github/bagrounds/served-function-as-function/badges/issue_count.svg
+[codeclimate-issues-url]: https://codeclimate.com/github/bagrounds/served-function-as-function/issues
