@@ -10,6 +10,8 @@
    */
   var queryString = require('query-string');
   var request = require('request');
+  var _ = require('lodash');
+  var lomath = require('lomath');
 
   /*****************************************************************************
    * exports
@@ -28,29 +30,94 @@
    */
   function servedFunctionAsFunction(url, options, callback){
 
+    if( options.data ){
+      console.log('POST');
+      httpPost(url,options,callback);
+    } else {
+      console.log('GET');
+      httpGet(url,options,callback);
+    }
+
+  }
+
+  function httpGet(url, options, callback){
+
     var query = '?' + queryString.stringify(options);
 
     url = url + query;
 
     request(url, function(error, response, body) {
 
-      var problem = ( error || (response && response.statusCode != 200) );
+      if( isProblem(error,response) ){
+        error = handleProblem(error, response, body);
+        callback(error, body);
+        return;
+      }
 
-      if( problem ){
-        var e = {};
-
-        if( error ){
-          e.error = error;
-        }
-
-        if( (response && response.statusCode != 200)){
-          e.statusCode = response.statusCode;
-        }
-      } else {
+      if( body ){
         body = JSON.parse(body);
       }
 
-      callback(e, body);
+      callback(error, body);
+    });
+  }
+
+  function isProblem(error, response){
+    return  error || (response && response.statusCode != 200);
+  }
+
+  function handleProblem(error, response, body){
+
+    var e = {};
+
+    if( error ){
+      e.error = error;
+    }
+
+    if( (response && response.statusCode != 200)){
+      e.statusCode = response.statusCode;
+    }
+
+    return e;
+  }
+
+  function httpPost(url, options, callback){
+
+    var data = options.data;
+
+    options = _.omit(options, 'data');
+
+    var query = '?' + queryString.stringify(options);
+
+    url = url + query;
+
+    var formData = lomath.flattenJSON(data);
+
+    console.log('formData: ' + JSON.stringify(formData));
+
+    var requestOptions = {
+      url: url,
+      json: formData
+    };
+
+    console.log('request options: ' + JSON.stringify(requestOptions));
+    request.post(requestOptions, function (error, response, body) {
+
+      error && console.error(error);
+      console.log('body: '  + body);
+
+      if( isProblem(error,response) ){
+        console.error('A PROBLEM!!!');
+        error = handleProblem(error, response, body);
+        callback(error, body);
+        return;
+      }
+
+      if( body ){
+        body = lomath.unflattenJSON(body);
+      }
+
+      callback(error, body);
     });
   }
 })();

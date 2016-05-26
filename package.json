@@ -1,6 +1,6 @@
 {
   "name": "served-function-as-function",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "main": "served-function-as-function.js",
   "private": false,
   "repository": {
@@ -18,6 +18,8 @@
     "lint": "eslint *.js lib/**/*.js test/**/*.js"
   },
   "dependencies": {
+    "lodash": "^4.13.1",
+    "lomath": "^0.3.0",
     "query-string": "^4.1.0",
     "request": "^2.72.0",
     "serve-function": "bagrounds/serve-function",

@@ -4,29 +4,43 @@
 ;(function(){
   'use strict';
 
-  module.exports = exampleFunction;
+  module.exports = testFunction;
 
   /**
-   * @function exampleFunction
-   * @alias example-function
    *
+   * @alias example-function
+   * @returns {*}
    * @param {Object} options
-   * @param {String} options.aString
-   * @param {Number} options.aNumber
-   * @param {String} options.shouldFail
+   * @param {String|Number} options.a
+   * @param {String|Number} options.b
+   * @param {String|Number} options.c
+   * @param {Object} [options.data]
+   * @param {Boolean} [options.shouldFail]
    * @param {Function} callback
    */
-  function exampleFunction(options, callback){
+  function testFunction(options,callback){
 
-    if( options.shouldFail == 'true' ) {
+    console.log('inside test function');
 
-      var error = new Error('failing like you asked me to');
-      callback(error, error);
+    if( options.shouldFail ){
+      callback("failing, per request");
       return;
     }
 
-    var result = options.aString + options.aNumber;
+    var result = options.a + options.b + options.c;
 
-    callback(null, result);
+    console.log('pre result: ' + result);
+
+    if( options.data ){
+
+      console.log('inbound data: ' + JSON.stringify(options.data));
+      result = {
+        query: result,
+        data: options.data
+      }
+    }
+
+    console.log('test function result: ' + JSON.stringify(result));
+    callback(null,result);
   }
 })();
