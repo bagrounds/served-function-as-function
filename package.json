@@ -1,6 +1,6 @@
 {
   "name": "served-function-as-function",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "served-function-as-function.js",
   "private": false,
   "repository": {

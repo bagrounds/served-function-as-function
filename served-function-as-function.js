@@ -104,7 +104,7 @@
     request.post(requestOptions, function (error, response, body) {
 
       error && console.error(error);
-      console.log('body: '  + body);
+      console.log('body: '  + JSON.stringify(body));
 
       if( isProblem(error,response) ){
         console.error('A PROBLEM!!!');
@@ -115,6 +115,7 @@
 
       if( body ){
         body = lomath.unflattenJSON(body);
+        console.log('unflattened body: '  + JSON.stringify(body));
       }
 
       callback(error, body);
