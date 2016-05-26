@@ -100,7 +100,7 @@
       json: formData
     };
 
-    console.log('request options: ' + JSON.stringify(requestOptions));
+    console.log('request from: ' + url);
     request.post(requestOptions, function (error, response, body) {
 
       error && console.error(error);
