@@ -93,8 +93,6 @@
 
     var formData = lomath.flattenJSON(data);
 
-    console.log('formData: ' + JSON.stringify(formData));
-
     var requestOptions = {
       url: url,
       json: formData
