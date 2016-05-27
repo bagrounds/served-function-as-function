@@ -26,6 +26,7 @@
    *
    * @param {String} url base address for the REST API
    * @param {Object} options
+   * @param {*} [options.data]
    * @param {Function} callback
    */
   function servedFunctionAsFunction(url, options, callback){
@@ -81,6 +82,13 @@
     return e;
   }
 
+  /**
+   *
+   * @param {String} url base address for the REST API
+   * @param {Object} options
+   * @param {*} options.data
+   * @param {Function} callback
+   */
   function httpPost(url, options, callback){
 
     var data = options.data;
@@ -101,8 +109,14 @@
     console.log('request from: ' + url);
     request.post(requestOptions, function (error, response, body) {
 
+      console.log('body: '  + body);
       error && console.error(error);
-      console.log('body: '  + JSON.stringify(body));
+      console.log('body: '  + JSON.stringify(body).slice(0,200));
+
+      if( typeof body == 'string' ){
+        console.log('its a string!');
+        body = JSON.parse(body);
+      }
 
       if( isProblem(error,response) ){
         console.error('A PROBLEM!!!');
