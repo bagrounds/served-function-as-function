@@ -13,6 +13,8 @@
   var _ = require('lodash');
   var lomath = require('lomath');
 
+
+
   /*****************************************************************************
    * exports
    */
@@ -99,19 +101,19 @@
 
     url = url + query;
 
-    var formData = lomath.flattenJSON(data);
+    console.log(data);
+
+    //var formData = lomath.flattenJSON(data);
 
     var requestOptions = {
       url: url,
-      json: formData
+      json: data
     };
 
     console.log('request from: ' + url);
     request.post(requestOptions, function (error, response, body) {
 
-      console.log('body: '  + body);
       error && console.error(error);
-      console.log('body: '  + JSON.stringify(body).slice(0,200));
 
       if( typeof body == 'string' ){
         console.log('its a string!');
@@ -126,6 +128,7 @@
       }
 
       if( body ){
+        console.log('flat body: '  + JSON.stringify(body));
         body = lomath.unflattenJSON(body);
         console.log('unflattened body: '  + JSON.stringify(body));
       }
