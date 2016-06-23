@@ -15,7 +15,8 @@
     "coverage": "istanbul cover _mocha",
     "postcoverage": "codeclimate-test-reporter < coverage/lcov.info",
     "build": "npm run lint && npm run coverage && npm run document",
-    "lint": "eslint *.js lib/**/*.js test/**/*.js"
+    "lint": "eslint *.js lib/**/*.js test/**/*.js",
+    "eslint": "eslint --ignore-path .gitignore ."
   },
   "dependencies": {
     "lodash": "^4.13.1",
